@@ -1,12 +1,22 @@
 /**
  * Site config — live GitHub Pages base (no trailing slash).
+ *
+ * Paste your IDs below (leave empty to disable):
+ * - GA_MEASUREMENT_ID: Google Analytics 4 → Admin → Data streams → Measurement ID (G-XXXXXXXX)
+ * - GOOGLE_SITE_VERIFICATION: Search Console → HTML tag method → content="...." value only
  */
 window.SiteConfig = {
   SITE_URL: "https://cadejay.github.io/2048cupcakes",
 
   SITE_NAME: "2048 Cupcakes",
   CONTACT_EMAIL: "",
-  GITHUB_ISSUES: "https://github.com/cadejay/2048cupcakes/issues"
+  GITHUB_ISSUES: "https://github.com/cadejay/2048cupcakes/issues",
+
+  /** e.g. "G-XXXXXXXXXX" */
+  GA_MEASUREMENT_ID: "",
+
+  /** Search Console meta verification content only (not the full tag) */
+  GOOGLE_SITE_VERIFICATION: "qAim0I8sXkeaXlj5JqkbFQKEiRjQhgf1XsA63uEkpdU"
 };
 
 window.SiteConfig.getBaseUrl = function () {
@@ -81,3 +91,50 @@ window.SiteConfig.applySeoMeta = function (opts) {
     } catch (e) { /* ignore */ }
   }
 };
+
+/** Google Search Console HTML-tag verification */
+window.SiteConfig.applySiteVerification = function () {
+  var code = String(this.GOOGLE_SITE_VERIFICATION || "").trim();
+  if (!code) return;
+  var existing = document.querySelector('meta[name="google-site-verification"]');
+  if (existing) {
+    existing.setAttribute("content", code);
+    return;
+  }
+  var meta = document.createElement("meta");
+  meta.setAttribute("name", "google-site-verification");
+  meta.setAttribute("content", code);
+  document.head.appendChild(meta);
+};
+
+/** Google Analytics 4 (gtag) — only loads when GA_MEASUREMENT_ID is set */
+window.SiteConfig.applyAnalytics = function () {
+  var id = String(this.GA_MEASUREMENT_ID || "").trim();
+  if (!id || !/^G-[A-Z0-9]+$/i.test(id)) return;
+  if (document.getElementById("ga4-gtag")) return;
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("js", new Date());
+  gtag("config", id, { anonymize_ip: true });
+
+  var s = document.createElement("script");
+  s.async = true;
+  s.id = "ga4-gtag";
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+  document.head.appendChild(s);
+};
+
+window.SiteConfig.bootTracking = function () {
+  this.applySiteVerification();
+  this.applyAnalytics();
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () {
+    window.SiteConfig.bootTracking();
+  });
+} else {
+  window.SiteConfig.bootTracking();
+}
