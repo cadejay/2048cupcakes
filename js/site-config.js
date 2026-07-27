@@ -13,7 +13,7 @@ window.SiteConfig = {
   GITHUB_ISSUES: "https://github.com/cadejay/2048cupcakes/issues",
 
   /** e.g. "G-XXXXXXXXXX" */
-  GA_MEASUREMENT_ID: "",
+  GA_MEASUREMENT_ID: "G-RS8KM84Z2W",
 
   /** Search Console meta verification content only (not the full tag) */
   GOOGLE_SITE_VERIFICATION: "qAim0I8sXkeaXlj5JqkbFQKEiRjQhgf1XsA63uEkpdU"
@@ -111,7 +111,8 @@ window.SiteConfig.applySiteVerification = function () {
 window.SiteConfig.applyAnalytics = function () {
   var id = String(this.GA_MEASUREMENT_ID || "").trim();
   if (!id || !/^G-[A-Z0-9]+$/i.test(id)) return;
-  if (document.getElementById("ga4-gtag")) return;
+  // Skip if homepage / page already embeds the official gtag snippet
+  if (document.getElementById("ga4-gtag") || typeof window.gtag === "function") return;
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
