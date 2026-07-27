@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cadejay.github.io/2048cupcakes/sitemap.xml

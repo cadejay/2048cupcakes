@@ -1,0 +1,83 @@
+/**
+ * Site config — live GitHub Pages base (no trailing slash).
+ */
+window.SiteConfig = {
+  SITE_URL: "https://cadejay.github.io/2048cupcakes",
+
+  SITE_NAME: "2048 Cupcakes",
+  CONTACT_EMAIL: "",
+  GITHUB_ISSUES: "https://github.com/cadejay/2048cupcakes/issues"
+};
+
+window.SiteConfig.getBaseUrl = function () {
+  if (this.SITE_URL) {
+    return this.SITE_URL.replace(/\/$/, "");
+  }
+  if (typeof location !== "undefined" && location.origin && /^https?:/.test(location.protocol)) {
+    var path = location.pathname || "/";
+    if (path.indexOf(".html") !== -1) {
+      path = path.replace(/\/[^/]*\.html$/, "/");
+    }
+    if (path.slice(-1) !== "/") path += "/";
+    return (location.origin + path).replace(/\/$/, "") || location.origin;
+  }
+  return "";
+};
+
+window.SiteConfig.absolute = function (path) {
+  var base = this.getBaseUrl();
+  path = String(path || "").replace(/^\//, "");
+  if (!base) return path || "./";
+  return base + (path ? "/" + path : "");
+};
+
+/** Apply absolute canonical + social meta as early as possible */
+window.SiteConfig.applySeoMeta = function (opts) {
+  opts = opts || {};
+  var base = this.getBaseUrl();
+  if (!base) return;
+  var page = (opts.pagePath || "").replace(/^\//, "");
+  var url = page ? base + "/" + page : base + "/";
+  var image = opts.image || "style/img/2048.jpg";
+  if (image.indexOf("http") !== 0) {
+    image = base + "/" + image.replace(/^\.\//, "");
+  }
+
+  var canon = document.getElementById("canonical-link") || document.querySelector('link[rel="canonical"]');
+  if (canon) canon.setAttribute("href", url);
+
+  function setContent(sel, val) {
+    var el = document.querySelector(sel);
+    if (el) el.setAttribute("content", val);
+  }
+  setContent("#og-url", url);
+  setContent("meta[property='og:url']", url);
+  setContent("#og-image", image);
+  setContent("meta[property='og:image']", image);
+  setContent("#twitter-image", image);
+  setContent("meta[name='twitter:image']", image);
+
+  // Upgrade relative URLs inside JSON-LD blocks
+  var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+  for (var i = 0; i < scripts.length; i++) {
+    try {
+      var data = JSON.parse(scripts[i].textContent);
+      var changed = false;
+      function abs(v) {
+        if (typeof v !== "string") return v;
+        if (/^https?:\/\//i.test(v)) return v;
+        if (v === "./" || v === ".") return base + "/";
+        if (v.indexOf("./") === 0) return base + "/" + v.slice(2);
+        if (v.indexOf("style/") === 0 || v.indexOf("css/") === 0) return base + "/" + v;
+        return v;
+      }
+      if (data.url) { data.url = abs(data.url); changed = true; }
+      if (data.image) { data.image = abs(data.image); changed = true; }
+      if (data.itemListElement && data.itemListElement[0] && data.itemListElement[0].item) {
+        data.itemListElement[0].item = abs(data.itemListElement[0].item);
+        changed = true;
+      }
+      if (changed) scripts[i].textContent = JSON.stringify(data);
+    } catch (e) { /* ignore */ }
+  }
+};
