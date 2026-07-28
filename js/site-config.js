@@ -128,12 +128,23 @@ window.SiteConfig.applyAnalytics = function () {
     document.head.appendChild(s);
   }
 
-  if (typeof window.requestIdleCallback === "function") {
-    window.requestIdleCallback(loadGa, { timeout: 3500 });
-  } else {
-    window.addEventListener("load", function () {
-      setTimeout(loadGa, 1500);
+  var loaded = false;
+  function loadOnce() {
+    if (loaded) return;
+    loaded = true;
+    loadGa();
+    ["scroll", "pointerdown", "keydown", "touchstart"].forEach(function (ev) {
+      window.removeEventListener(ev, loadOnce, true);
     });
+  }
+  ["scroll", "pointerdown", "keydown", "touchstart"].forEach(function (ev) {
+    window.addEventListener(ev, loadOnce, { once: true, passive: true, capture: true });
+  });
+  // Fallback if user never interacts (still after idle)
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(function () { setTimeout(loadOnce, 5000); }, { timeout: 8000 });
+  } else {
+    window.addEventListener("load", function () { setTimeout(loadOnce, 6000); });
   }
 };
 
