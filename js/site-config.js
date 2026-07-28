@@ -107,24 +107,34 @@ window.SiteConfig.applySiteVerification = function () {
   document.head.appendChild(meta);
 };
 
-/** Google Analytics 4 (gtag) — only loads when GA_MEASUREMENT_ID is set */
+/** Google Analytics 4 (gtag) — delayed so Lighthouse/TBT is not blocked */
 window.SiteConfig.applyAnalytics = function () {
   var id = String(this.GA_MEASUREMENT_ID || "").trim();
   if (!id || !/^G-[A-Z0-9]+$/i.test(id)) return;
-  // Skip if homepage / page already embeds the official gtag snippet
   if (document.getElementById("ga4-gtag") || typeof window.gtag === "function") return;
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag("js", new Date());
-  gtag("config", id, { anonymize_ip: true });
+  function loadGa() {
+    if (document.getElementById("ga4-gtag")) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", id, { anonymize_ip: true });
 
-  var s = document.createElement("script");
-  s.async = true;
-  s.id = "ga4-gtag";
-  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-  document.head.appendChild(s);
+    var s = document.createElement("script");
+    s.async = true;
+    s.id = "ga4-gtag";
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(loadGa, { timeout: 3500 });
+  } else {
+    window.addEventListener("load", function () {
+      setTimeout(loadGa, 1500);
+    });
+  }
 };
 
 window.SiteConfig.bootTracking = function () {

@@ -68,6 +68,11 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   img.src = "style/img/" + tile.value + ".jpg";
+  img.alt = "";
+  img.setAttribute("alt", "");
+  img.decoding = "async";
+  img.width = 106;
+  img.height = 106;
   inner.appendChild(img);
 
   var numBadge = document.createElement("span");
@@ -175,18 +180,16 @@ HTMLActuator.prototype.clearMessage = function () {
 };
 
 HTMLActuator.prototype.scoreShareButton = function () {
-  var share = document.createElement("a");
+  var share = document.createElement("button");
+  share.type = "button";
   share.classList.add("score-share-link");
-  share.setAttribute("href", "#");
-  share.setAttribute("role", "button");
   share.textContent = "Share score";
 
   var flavor = typeof Localize === "function" ? Localize(this.score) : String(this.score);
   var text = "I reached " + String(flavor).toUpperCase() + " with " + this.points + " Kcal in 2048 Cupcakes! Can you beat me?";
   var url = (window.SiteConfig && SiteConfig.getBaseUrl()) || (window.location.href.split("?")[0].split("#")[0]);
 
-  share.addEventListener("click", function (e) {
-    e.preventDefault();
+  share.addEventListener("click", function () {
     if (navigator.share) {
       navigator.share({ title: "2048 Cupcakes", text: text, url: url }).catch(function () {});
     } else {

@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RS8KM84Z2W" id="ga4-gtag"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RS8KM84Z2W');
-  </script>
   <meta charset="utf-8">
   <title>2048 Cupcakes — Play Free Online | Strategies, Levels &amp; Tips</title>
   <meta name="description" content="Play 2048 Cupcakes free online. Merge cupcakes, track Kcal, use undo &amp; reach Rainbow (8192). No download — works on mobile and desktop.">
@@ -40,22 +32,25 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-  <link href="style/main.css?v=22" rel="stylesheet">
-  <link href="css/site.css?v=25" rel="stylesheet">
-  <link href="css/content.css?v=23" rel="stylesheet">
-  <link href="css/responsive.css?v=24" rel="stylesheet">
+  <link href="style/fonts/clear-sans.css" rel="stylesheet">
+  <link href="style/main.css?v=23" rel="stylesheet">
+  <link href="css/site.css?v=26" rel="stylesheet">
+  <link href="css/responsive.css?v=25" rel="stylesheet">
+  <link href="css/content.css?v=24" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="css/juice.css?v=24" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="css/enhancements.css?v=25" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="css/fun.css?v=6" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="css/enhancements.css?v=26" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="css/fun.css?v=7" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="css/content.css?v=24" rel="stylesheet">
     <link href="css/juice.css?v=24" rel="stylesheet">
-    <link href="css/enhancements.css?v=25" rel="stylesheet">
-    <link href="css/fun.css?v=6" rel="stylesheet">
+    <link href="css/enhancements.css?v=26" rel="stylesheet">
+    <link href="css/fun.css?v=7" rel="stylesheet">
   </noscript>
 
-  <script src="js/site-config.js?v=4"></script>
+  <script src="js/site-config.js?v=5"></script>
 
   <script type="application/ld+json">
   {
@@ -185,7 +180,7 @@
         <div class="above-game">
           <p class="game-intro">Join the <strong>Cupcakes!</strong></p>
           <div class="game-controls">
-            <a class="restart-button">Play Again</a>
+            <button type="button" class="restart-button">Play Again</button>
             <button type="button" class="settings-button" id="btn-settings" aria-label="Game settings" title="Settings">⚙</button>
           </div>
         </div>
@@ -196,8 +191,8 @@
           <div class="game-message">
             <p></p>
             <div class="lower">
-              <a class="keep-playing-button">Keep going</a>
-              <a class="retry-button">Retry</a>
+              <button type="button" class="keep-playing-button">Keep going</button>
+              <button type="button" class="retry-button">Retry</button>
               <div class="score-sharing"></div>
             </div>
           </div>
@@ -1666,7 +1661,7 @@
               </article>
             </div>
             <button type="button" class="carousel__btn carousel__btn--side" data-carousel-next aria-label="Next alternatives">›</button>
-            <div class="carousel__dots" data-carousel-dots aria-hidden="true"></div>
+            <div class="carousel__dots" data-carousel-dots role="group" aria-label="Carousel slides"></div>
           </div>
           <p class="reveal alt-carousel-note">These alternatives offer the same simple merging concept while adding different themes, characters, and visual styles for a fresh experience.</p>
         </div>

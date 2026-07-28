@@ -171,7 +171,9 @@
   padding: 0 8px;
 }
 
-.site-body .game-wrap .game-container .game-message a {
+.site-body .game-wrap .game-container .game-message a,
+.site-body .game-wrap .game-container .game-message button.keep-playing-button,
+.site-body .game-wrap .game-container .game-message button.retry-button {
   margin-left: 0 !important;
   height: auto !important;
   line-height: 1.2 !important;

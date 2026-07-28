@@ -174,7 +174,7 @@ body.site-body .container {
   display: block;
   font-size: clamp(9px, 2.2vw, 11px);
   font-weight: 600;
-  color: var(--primary);
+  color: #b0104a;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -500,13 +500,14 @@ body.nav-open {
   margin: 0 !important;
   font-size: 15px !important;
   font-weight: 600 !important;
-  background: linear-gradient(135deg, #FF6B95 0%, #FF8FA8 100%) !important;
+  font-family: inherit;
+  background: linear-gradient(135deg, #c2185b 0%, #e04578 100%) !important;
   color: #fff !important;
   border: none !important;
   border-radius: 25px !important;
   text-decoration: none !important;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 107, 149, 0.3);
+  box-shadow: 0 4px 15px rgba(194, 24, 91, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1043,12 +1044,14 @@ body.nav-open {
   gap: 24px;
 }
 
-.site-footer__col h4 {
+.site-footer__col h4,
+.site-footer__col-title {
   margin: 0 0 14px;
   font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #FF6B95;
+  color: #b0104a;
 }
 
 .site-footer__col ul {
@@ -1066,7 +1069,7 @@ body.nav-open {
   transition: color 0.15s;
 }
 
-.site-footer__col a:hover { color: #FF6B95; }
+.site-footer__col a:hover { color: #b0104a; }
 
 .site-footer__credits {
   font-size: 13px;
@@ -1075,7 +1078,7 @@ body.nav-open {
   margin: 0 0 8px;
 }
 
-.site-footer__credits a { color: #FF6B95; text-decoration: none; }
+.site-footer__credits a { color: #b0104a; text-decoration: none; }
 .site-footer__credits a:hover { color: #4A3728; }
 
 .site-footer__copy {

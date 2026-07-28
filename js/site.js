@@ -53,7 +53,7 @@
           "</div>" +
           '<div class="site-footer__cols">' +
             '<div class="site-footer__col">' +
-              "<h4>Game</h4>" +
+              '<p class="site-footer__col-title">Game</p>' +
               "<ul>" +
                 '<li><a href="index.html#game">Play 2048 Cupcakes</a></li>' +
                 '<li><a href="how-to-play.html">How to Play</a></li>' +
@@ -63,7 +63,7 @@
               "</ul>" +
             "</div>" +
             '<div class="site-footer__col">' +
-              "<h4>About</h4>" +
+              '<p class="site-footer__col-title">About</p>' +
               "<ul>" +
                 '<li><a href="about.html">About Us</a></li>' +
                 '<li><a href="contact.html">Contact</a></li>' +
@@ -71,7 +71,7 @@
               "</ul>" +
             "</div>" +
             '<div class="site-footer__col">' +
-              "<h4>Legal</h4>" +
+              '<p class="site-footer__col-title">Legal</p>' +
               "<ul>" +
                 '<li><a href="privacy-policy.html">Privacy Policy</a></li>' +
                 '<li><a href="terms.html">Terms of Use</a></li>' +

@@ -1,4 +1,4 @@
-@import url(fonts/clear-sans.css);
+/* Clear Sans loaded via <link> in HTML — avoid render-blocking @import */
 /* $tile-gold-glow-color: lighten($tile-gold-color, 15%); */
 html, body {
   margin: 0;
@@ -67,7 +67,7 @@ p.title {
   overflow: hidden;
   position: relative;
   display: inline-block;
-  background: #f67098;
+  background: #c2185b;
   padding: 15px 0px;
   font-size: 19px;
   text-transform: capitalize;
@@ -75,7 +75,7 @@ p.title {
   line-height: 41px;
   font-weight: bold;
   border-radius: 3px;
-  color: white;
+  color: #fff;
   margin-top: 8px;
   margin-bottom: 16px;
   text-align: center;
@@ -212,7 +212,9 @@ hr {
     .game-container .game-message .lower {
       display: block;
       margin-top: 59px; }
-    .game-container .game-message a {
+    .game-container .game-message a,
+    .game-container .game-message button.keep-playing-button,
+    .game-container .game-message button.retry-button {
       display: inline-block;
       background: #f888a9;
       border-radius: 3px;
@@ -221,8 +223,12 @@ hr {
       color: #3c1b1a;
       height: 40px;
       line-height: 42px;
-      margin-left: 9px; }
-      .game-container .game-message a.keep-playing-button {
+      margin-left: 9px;
+      border: none;
+      font: inherit;
+      cursor: pointer; }
+      .game-container .game-message a.keep-playing-button,
+      .game-container .game-message button.keep-playing-button {
         display: none; }
     .game-container .game-message .score-sharing {
       display: inline-block;
@@ -231,7 +237,8 @@ hr {
     .game-container .game-message.game-won {
       background: rgba(88, 46, 116, 0.5);
       color: white; }
-      .game-container .game-message.game-won a.keep-playing-button {
+      .game-container .game-message.game-won a.keep-playing-button,
+      .game-container .game-message.game-won button.keep-playing-button {
         display: inline-block; }
     .game-container .game-message.game-won, .game-container .game-message.game-over {
       display: block; }
@@ -634,7 +641,9 @@ hr {
       .game-container .game-message .lower {
         display: block;
         margin-top: 59px; }
-      .game-container .game-message a {
+      .game-container .game-message a,
+      .game-container .game-message button.keep-playing-button,
+      .game-container .game-message button.retry-button {
         display: inline-block;
         background: #f888a9;
         border-radius: 3px;
@@ -643,8 +652,12 @@ hr {
         color: #3c1b1a;
         height: 40px;
         line-height: 42px;
-        margin-left: 9px; }
-        .game-container .game-message a.keep-playing-button {
+        margin-left: 9px;
+        border: none;
+        font: inherit;
+        cursor: pointer; }
+        .game-container .game-message a.keep-playing-button,
+        .game-container .game-message button.keep-playing-button {
           display: none; }
       .game-container .game-message .score-sharing {
         display: inline-block;
@@ -653,7 +666,8 @@ hr {
       .game-container .game-message.game-won {
         background: rgba(88, 46, 116, 0.5);
         color: white; }
-        .game-container .game-message.game-won a.keep-playing-button {
+        .game-container .game-message.game-won a.keep-playing-button,
+        .game-container .game-message.game-won button.keep-playing-button {
           display: inline-block; }
       .game-container .game-message.game-won, .game-container .game-message.game-over {
         display: block; }
