@@ -1,3 +1,25 @@
+window.__bootGameExtras = function () {
+  if (!window.game) return;
+  try {
+    if (window.GameEnhancements && !window.GameEnhancements.__booted) {
+      GameEnhancements.init(window.game);
+      window.GameEnhancements.__booted = true;
+    }
+  } catch (err) { console.warn(err); }
+  try {
+    if (window.PlayModes && !window.PlayModes.__booted) {
+      PlayModes.init(window.game);
+      window.PlayModes.__booted = true;
+    }
+  } catch (err) { console.warn(err); }
+  try {
+    if (window.FunLayer && !window.FunLayer.__booted) {
+      FunLayer.init(window.game);
+      window.FunLayer.__booted = true;
+    }
+  } catch (err) { console.warn(err); }
+};
+
 window.requestAnimationFrame(function () {
   try {
     window.game = new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
@@ -5,16 +27,7 @@ window.requestAnimationFrame(function () {
     console.error("Game boot failed:", err);
     return;
   }
-  try {
-    if (window.GameEnhancements) GameEnhancements.init(window.game);
-  } catch (err) { console.warn(err); }
-  try {
-    if (window.PlayModes) PlayModes.init(window.game);
-  } catch (err) { console.warn(err); }
-  // Defer fun layer so board always paints even if fun features error
-  setTimeout(function () {
-    try {
-      if (window.FunLayer) FunLayer.init(window.game);
-    } catch (err) { console.warn(err); }
-  }, 0);
+  window.__bootGameExtras();
+  setTimeout(window.__bootGameExtras, 400);
+  setTimeout(window.__bootGameExtras, 1200);
 });

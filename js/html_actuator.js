@@ -67,12 +67,17 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  img.src = "style/img/" + tile.value + ".jpg";
+  img.src = "style/img/" + tile.value + ".webp";
   img.alt = "";
   img.setAttribute("alt", "");
   img.decoding = "async";
   img.width = 106;
   img.height = 106;
+  img.onerror = function () {
+    if (this.dataset.fallback) return;
+    this.dataset.fallback = "1";
+    this.src = "style/img/" + tile.value + ".jpg";
+  };
   inner.appendChild(img);
 
   var numBadge = document.createElement("span");

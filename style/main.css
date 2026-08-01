@@ -10,7 +10,7 @@ html, body {
 
 body {
   padding: 80px 0;
-  background-image: url(img/bg.jpg);
+  background-image: none;
   background-position: top center;
   background-repeat: no-repeat; }
 

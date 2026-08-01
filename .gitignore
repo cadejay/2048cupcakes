@@ -1,4 +1,6 @@
-node_modules/
+﻿node_modules/
 lighthouse*.json
+lh-*.json
 package-lock.json
-
+.DS_Store
+Thumbs.db

@@ -365,6 +365,20 @@
     update();
   }
 
+  function initGuideToc() {
+    var panel = document.getElementById("guide-toc-panel");
+    if (!panel) return;
+
+    panel.addEventListener("click", function (e) {
+      var link = e.target.closest("a[href^='#']");
+      if (!link || !panel.contains(link)) return;
+      // After jump, collapse so the section isn't buried under the open menu
+      window.setTimeout(function () {
+        panel.open = false;
+      }, 80);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initReadingProgress();
     initReveal();
@@ -376,5 +390,6 @@
     initOfflineToggle();
     initFaqSearch();
     initBackToTop();
+    initGuideToc();
   });
 })();

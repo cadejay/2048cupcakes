@@ -27,7 +27,7 @@
     return (
       '<a href="' + homeUrl + '" class="site-logo">' +
         '<span class="site-logo__icon" aria-hidden="true">' +
-          '<img src="style/img/bg.jpg" alt="" width="48" height="48" decoding="async">' +
+          '<img src="style/img/bg.webp" alt="" width="48" height="48" decoding="async">' +
         "</span>" +
         '<span class="site-logo__text">2048 Cupcakes<small>Free Online Puzzle</small></span>' +
       "</a>"

@@ -554,7 +554,7 @@ header.site-header {
 #site-header .site-nav a:not(.site-nav__cta).is-active,
 #site-header .site-nav a:not(.site-nav__cta).active {
   background: transparent !important;
-  color: #FF6B95 !important;
+  color: #5c0a2a !important;
   font-weight: 600 !important;
 }
 

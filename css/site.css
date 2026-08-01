@@ -226,7 +226,7 @@ body.site-body .container {
 .site-nav a.is-active,
 .site-nav a.active {
   background: transparent;
-  color: #b0104a;
+  color: #5c0a2a;
   font-weight: 600;
 }
 
@@ -1224,3 +1224,10 @@ body.nav-open {
     padding: 0 8px;
   }
 }
+
+.orbit-cake,.howto-card__media img,.levels-table__thumb{aspect-ratio:1/1;height:auto;object-fit:cover}
+.guide-section{content-visibility:auto;contain-intrinsic-size:1px 800px}
+
+
+#site-header{min-height:57px}
+
