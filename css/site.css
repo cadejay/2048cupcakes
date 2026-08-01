@@ -394,7 +394,7 @@ body.nav-open {
   .game-hero-visual .title { margin-top: -56px; }
 }
 
-/* Score boxes — bigger like reference */
+/* Score boxes — lite pink + dark text (readable, lighter paint) */
 .site-body .game-wrap .score-container,
 .site-body .game-wrap .best-container,
 .site-body .game-wrap .score-points,
@@ -407,6 +407,9 @@ body.nav-open {
   border-radius: 4px !important;
   margin-top: 6px !important;
   margin-bottom: 6px !important;
+  background: #FFE8F0 !important;
+  color: #5c0a2a !important;
+  border: 1px solid rgba(194, 24, 91, 0.22) !important;
 }
 
 .site-body .game-wrap .score-container:after,
@@ -416,6 +419,7 @@ body.nav-open {
   top: 8px !important;
   font-size: 12px !important;
   letter-spacing: 0.04em;
+  color: #8B2F4B !important;
 }
 
 .site-body .game-wrap .heading {

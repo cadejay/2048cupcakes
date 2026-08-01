@@ -67,7 +67,7 @@ p.title {
   overflow: hidden;
   position: relative;
   display: inline-block;
-  background: #c2185b;
+  background: #FFE8F0;
   padding: 15px 0px;
   font-size: 19px;
   text-transform: capitalize;
@@ -75,12 +75,13 @@ p.title {
   line-height: 41px;
   font-weight: bold;
   border-radius: 3px;
-  color: #fff;
+  color: #5c0a2a;
   margin-top: 8px;
   margin-bottom: 16px;
   text-align: center;
   width: 49%;
-  float: left; }
+  float: left;
+  border: 1px solid rgba(194, 24, 91, 0.22); }
   .score-container:after, .best-container:after,
 	.score-points:after, .best-points:after {
     position: absolute;
@@ -91,7 +92,7 @@ p.title {
     font-size: 13px;
     line-height: 13px;
     text-align: center;
-    color: #3c1b1a; }
+    color: #8B2F4B; }
   .score-container .score-addition, .best-container .score-addition,
 	.score-points .score-addition, .best-points .score-addition {
     position: absolute;
