@@ -39,8 +39,8 @@
 @media (min-width:769px){.site-nav-toggle{display:none}.site-nav{display:flex;align-items:center;gap:16px;list-style:none;margin:0;padding:0}.site-nav a{color:#4A3728;text-decoration:none;font-weight:500;font-size:15px}}
   </style>
 
-  <link rel="preload" href="css/app.min.css?v=33" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/app.min.css?v=33"></noscript>
+  <link rel="preload" href="css/app.min.css?v=34" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/app.min.css?v=34"></noscript>
   <link rel="preload" href="style/fonts/clear-sans.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   <script src="js/site-config.min.js?v=7"></script>
@@ -58,8 +58,8 @@
       function bootExtras() {
         if (booted) return;
         booted = true;
-        loadStyle("css/extras.min.css?v=33");
-        loadStyle("css/content.min.css?v=33");
+        loadStyle("css/extras.min.css?v=34");
+        loadStyle("css/content.min.css?v=34");
         if (!document.querySelector("link[data-gfonts]")) {
           var f = document.createElement("link");
           f.rel = "stylesheet";
@@ -319,12 +319,12 @@
       function loadExtras() {
         if (extras) return;
         extras = true;
-        inject("js/game-extras.min.js?v=31", "data-game-extras");
+        inject("js/game-extras.min.js?v=34", "data-game-extras");
       }
       function loadCore() {
         if (core) return;
         core = true;
-        inject("js/game-core.min.js?v=31", "data-game-core", function () {
+        inject("js/game-core.min.js?v=34", "data-game-core", function () {
           if ("requestIdleCallback" in window) requestIdleCallback(loadExtras, { timeout: 2500 });
           else setTimeout(loadExtras, 800);
         });
@@ -335,15 +335,16 @@
           window.removeEventListener(ev, arm, true);
         });
       }
-      // Pointer/touch only — keyboard a11y tools shouldn't boot the heavy game bundle
       ["pointerdown", "touchstart"].forEach(function (ev) {
         window.addEventListener(ev, arm, { once: true, passive: true, capture: true });
       });
-      // Keyboard players: enable after a beat so a11y audits don't boot the bundle
       window.addEventListener("load", function () {
+        // Show tiles soon even without tap (empty board looks "broken")
+        if ("requestIdleCallback" in window) requestIdleCallback(loadCore, { timeout: 2000 });
+        else setTimeout(loadCore, 1200);
         setTimeout(function () {
           window.addEventListener("keydown", arm, { once: true, passive: true });
-        }, 4000);
+        }, 500);
       });
     })();
   </script>

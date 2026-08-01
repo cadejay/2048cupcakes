@@ -330,8 +330,8 @@
   .fun-dpad__right { top: 44px; left: 88px; }
 }
 
-/* Very small / landscape-short phones */
-@media (max-height: 560px) and (orientation: landscape) {
+/* Very small landscape phones only (not short desktop / iframe viewports) */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
   .game-hero-visual {
     display: none;
   }
