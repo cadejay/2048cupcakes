@@ -330,12 +330,8 @@
   .fun-dpad__right { top: 44px; left: 88px; }
 }
 
-/* Very small landscape phones only (not short desktop / iframe viewports) */
+/* Very small landscape phones — shrink board, keep hero visible */
 @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
-  .game-hero-visual {
-    display: none;
-  }
-
   .fun-hud__missions {
     display: none;
   }
