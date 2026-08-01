@@ -495,7 +495,7 @@ var GameEnhancements = (function () {
     interceptRestartButton();
     startTimer(true);
     updateStatsUI();
-    if (window.GameJuice) GameJuice.ensureStarted();
+    // Do not force GameJuice/audio start here — browsers block AudioContext without a gesture.
   }
 
   return { init: init, confirmRestart: confirmRestart };

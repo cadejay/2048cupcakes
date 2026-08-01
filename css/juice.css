@@ -4,7 +4,7 @@
 .party-mode-active .game-wrap {
   background: #fff !important;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .party-mode-active .game-wrap::before {

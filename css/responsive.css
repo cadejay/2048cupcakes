@@ -35,13 +35,9 @@
   --gap: 3.4%;
   --cell: calc((100% - 3 * var(--gap)) / 4);
   --step: calc(var(--cell) + var(--gap));
-  /* Fit width; also don't overflow short screens */
-  width: min(
-    100%,
-    var(--game-max),
-    calc(100vw - var(--game-gutter) * 2),
-    calc(100dvh - 220px)
-  ) !important;
+  /* Never shrink board with dvh math (that made it ~0px / a pink sliver). */
+  width: min(100%, var(--game-max), calc(100vw - var(--game-gutter) * 2)) !important;
+  min-width: min(260px, 100%) !important;
   max-width: 100% !important;
   height: auto !important;
   aspect-ratio: 1 / 1 !important;
@@ -330,14 +326,37 @@
   .fun-dpad__right { top: 44px; left: 88px; }
 }
 
-/* Very small landscape phones — shrink board, keep hero visible */
+/* Compact hero so the board fits in the first screen on phones */
+@media (max-width: 640px) {
+  .game-hero-cupcake {
+    width: min(150px, 38vw) !important;
+  }
+
+  .game-hero-visual .title {
+    margin-top: -28px !important;
+    font-size: clamp(34px, 10vw, 48px) !important;
+  }
+
+  .site-body .game-wrap .heading {
+    margin-top: 4px !important;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 640px) {
+  .game-hero-cupcake {
+    width: min(120px, 32vw) !important;
+  }
+
+  .game-hero-visual .title {
+    margin-top: -22px !important;
+    font-size: clamp(30px, 9vw, 42px) !important;
+  }
+}
+
+/* Very small landscape phones */
 @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
   .fun-hud__missions {
     display: none;
-  }
-
-  .site-body .game-wrap .game-container {
-    width: min(100%, calc(100dvh - 120px), 420px) !important;
   }
 
   .fun-dpad {

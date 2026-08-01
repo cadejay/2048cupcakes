@@ -389,6 +389,9 @@ var GameJuice = (function () {
   };
 })();
 
-document.addEventListener("DOMContentLoaded", function () {
+// Script may be injected after DOMContentLoaded (delayed extras bundle)
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { GameJuice.init(); });
+} else {
   GameJuice.init();
-});
+}

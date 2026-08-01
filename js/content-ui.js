@@ -379,7 +379,7 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function bootContentUi() {
     initReadingProgress();
     initReveal();
     initBenefitRings();
@@ -391,5 +391,12 @@
     initFaqSearch();
     initBackToTop();
     initGuideToc();
-  });
+  }
+
+  // Guide HTML is injected after first paint — DOMContentLoaded already fired by then.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootContentUi);
+  } else {
+    bootContentUi();
+  }
 })();

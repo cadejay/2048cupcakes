@@ -169,12 +169,10 @@ var FunLayer = (function () {
     var wrap = $(".game-wrap .container") || $(".game-wrap");
     if (wrap) {
       var gameContainer = $(".game-container");
-      var modes = $id("play-modes");
-      var banner = $id("play-mode-banner");
-      // After board + mode buttons: streak/missions sit below play modes
-      var anchor = banner || modes || gameContainer;
-      if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(hud, anchor.nextSibling);
+      var legend = $(".game-legend-collapse");
+      // Keep board first: missions go after tile legend, not between board and play area
+      if (legend && legend.parentNode) {
+        legend.parentNode.insertBefore(hud, legend.nextSibling);
       } else {
         wrap.appendChild(hud);
       }

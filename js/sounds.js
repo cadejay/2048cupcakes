@@ -23,14 +23,18 @@ var SoundManager = (function () {
     if (!ctx) {
       try {
         ctx = new (window.AudioContext || window.webkitAudioContext)();
-      } catch (e) {}
+      } catch (e) {
+        ctx = null;
+      }
     }
     return ctx;
   }
 
   function unlock() {
+    // Only create/resume after a real user gesture path calls this.
     var audio = getContext();
-    if (audio && audio.state === "suspended") {
+    if (!audio) return;
+    if (audio.state === "suspended") {
       audio.resume().then(function () { unlocked = true; }).catch(function () {});
     } else {
       unlocked = true;
