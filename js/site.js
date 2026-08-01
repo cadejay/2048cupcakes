@@ -2,8 +2,14 @@
   "use strict";
 
   var currentPage = document.body.getAttribute("data-page") || "";
+  var homeUrl =
+    (window.SiteConfig && typeof SiteConfig.absolute === "function"
+      ? SiteConfig.absolute("/")
+      : "") || "https://cadejay.github.io/2048cupcakes/";
+  if (homeUrl.slice(-1) !== "/") homeUrl += "/";
+
   var navItems = [
-    { href: "index.html", label: "Home", id: "home" },
+    { href: homeUrl, label: "Home", id: "home" },
     { href: "how-to-play.html", label: "How to Play", id: "how-to-play" },
     { href: "about.html", label: "About", id: "about" },
     { href: "contact.html", label: "Contact", id: "contact" }
@@ -19,7 +25,7 @@
   /** Same logo mark + text in header and footer */
   function buildLogo() {
     return (
-      '<a href="index.html" class="site-logo">' +
+      '<a href="' + homeUrl + '" class="site-logo">' +
         '<span class="site-logo__icon" aria-hidden="true">' +
           '<img src="style/img/bg.jpg" alt="" width="48" height="48" decoding="async">' +
         "</span>" +
@@ -35,7 +41,7 @@
         '<button class="site-nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>' +
         '<div class="site-nav-backdrop" id="site-nav-backdrop" hidden></div>' +
         '<ul class="site-nav" id="site-nav">' + buildNav() +
-          '<li><a href="index.html#game" class="site-nav__cta">▶ Play Now</a></li>' +
+          '<li><a href="' + homeUrl + '#game" class="site-nav__cta">▶ Play Now</a></li>' +
         "</ul>" +
       "</div>"
     );
@@ -49,17 +55,17 @@
           '<div class="site-footer__brand">' +
             buildLogo() +
             '<p class="site-footer__tagline">The most feature-rich 2048 Cupcakes game online — undo, achievements, sound effects, and mobile swipe support.</p>' +
-            '<a href="index.html#game" class="site-footer__play-btn">▶ Play Now</a>' +
+            '<a href="' + homeUrl + '#game" class="site-footer__play-btn">▶ Play Now</a>' +
           "</div>" +
           '<div class="site-footer__cols">' +
             '<div class="site-footer__col">' +
               '<p class="site-footer__col-title">Game</p>' +
               "<ul>" +
-                '<li><a href="index.html#game">Play 2048 Cupcakes</a></li>' +
+                '<li><a href="' + homeUrl + '#game">Play 2048 Cupcakes</a></li>' +
                 '<li><a href="how-to-play.html">How to Play</a></li>' +
-                '<li><a href="index.html#strategies">Winning Strategy</a></li>' +
-                '<li><a href="index.html#cupcake-levels-table">All Cupcake Flavors</a></li>' +
-                '<li><a href="index.html#faq">FAQ</a></li>' +
+                '<li><a href="' + homeUrl + '#strategies">Winning Strategy</a></li>' +
+                '<li><a href="' + homeUrl + '#cupcake-levels-table">All Cupcake Flavors</a></li>' +
+                '<li><a href="' + homeUrl + '#faq">FAQ</a></li>' +
               "</ul>" +
             "</div>" +
             '<div class="site-footer__col">' +
