@@ -81,6 +81,7 @@
               "<ul>" +
                 '<li><a href="privacy-policy.html">Privacy Policy</a></li>' +
                 '<li><a href="terms.html">Terms of Use</a></li>' +
+                '<li><a href="html-sitemap.html">Sitemap</a></li>' +
               "</ul>" +
             "</div>" +
           "</div>" +

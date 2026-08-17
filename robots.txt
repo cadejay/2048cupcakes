@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://cadejay.github.io/2048cupcakes/sitemap-pages.xml
 Sitemap: https://cadejay.github.io/2048cupcakes/sitemap.xml
